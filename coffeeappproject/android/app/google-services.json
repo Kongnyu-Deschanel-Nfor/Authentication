@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "818342540618",
+    "project_id": "ninja-brew-crew-f6b06",
+    "storage_bucket": "ninja-brew-crew-f6b06.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818342540618:android:89864a278687585a703db3",
+        "android_client_info": {
+          "package_name": "com.coffee.coffeeappproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr9m9sYVwd7k4UaZocwmmcZ542w4jY80c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818342540618:android:5ecfeb2ead6a972d703db3",
+        "android_client_info": {
+          "package_name": "com.deschanel.brewcofee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr9m9sYVwd7k4UaZocwmmcZ542w4jY80c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
