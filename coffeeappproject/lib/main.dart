@@ -13,6 +13,7 @@ void main() async {
       '/':(context)=>const SignUpWidget(),
       '/login':(context)=>const Login(),
       '/home':(context)=>const Home(),
+
     },
     debugShowCheckedModeBanner: false,
   ));

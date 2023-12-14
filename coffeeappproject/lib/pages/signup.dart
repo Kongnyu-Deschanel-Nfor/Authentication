@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({Key? key}) : super(key: key);
 
@@ -12,14 +13,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
    final TextEditingController _passwordController = TextEditingController();
    final TextEditingController _usernameController=TextEditingController();
   String notGood='';
-  @override
-
-
   Future<void> _handleSignUp() async {
     // Perform sign-up logic here
     String email = _emailController.text;
     String password = _passwordController.text;
-
+    String username= _usernameController.text;
     // Add your sign-up logic using Firebase or any other authentication service
     // For example:
     try {
@@ -27,8 +25,21 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         email: email,
         password: password,
       );
-      print("successfull");
-      Navigator.pushNamed(context, '/login');
+      //get userid for the newly created use
+      String? userId = credential.user?.uid;
+
+// Check if the user object is not null before accessing its properties
+      if (userId != null) {
+        // creating a document
+        await FirebaseFirestore.instance.collection('userData').doc(userId).set(
+          {
+            'email': email,
+            'username': username,
+          },
+        );
+        print("successfully");
+        Navigator.pushNamed(context, '/login');
+      }
     } on FirebaseAuthException catch (e) {
       setState(() {
         notGood=e.toString().substring(30);
@@ -132,7 +143,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             ),
           ),
           const SizedBox(height: 7),
-           Text(notGood),
+           Text(notGood,style: TextStyle(
+             color: Colors.red,
+             fontWeight: FontWeight.bold,
+             fontStyle: FontStyle.italic,
+           ),),
           const SizedBox(height: 60),
           ElevatedButton(onPressed: _handleSignUp,
             style: ElevatedButton.styleFrom(
@@ -146,7 +161,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               ),
           ),
           const SizedBox(height: 14,),
-          const Text("Already have an account? login",
+          GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context, '/login');
+            },
+            child: const Text("Already have an account? login",
+            ),
           ),
         ],
       ),
